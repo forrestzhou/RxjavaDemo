@@ -6,4 +6,5 @@ package com.forrest.testrxjava.operation;
 public interface IOperation {
 
     void exeCute();
+
 }

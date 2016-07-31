@@ -20,51 +20,30 @@ import rx.functions.Func1;
 public class MapOperation implements IOperation {
 
 
-
-
-
     @Override
     public void exeCute() {
 
         List<Student> students=new ArrayList<>();
         Student stuent=new Student();
-        Lesson l1=new Lesson();
-        l1.setName("英文");
-        Lesson l2=new Lesson();
-        l2.setName("语文");
-        List<Lesson> lessions=new ArrayList<>();
-        lessions.add(l1);
-        lessions.add(l2);
-        stuent.setLessonList(lessions);
+        stuent.setName("小一");
 
         Student s1=new Student();
-        List<Lesson> lession1=new ArrayList<>();
-        lession1.add(l1);
-        s1.setLessonList(lession1);
+        s1.setName("小二");
+
 
         students.add(stuent);
         students.add(s1);
 
-        Observable.from(students).flatMap(new Func1<Student, Observable<Lesson>>() {
+        Observable.from(students).map(new Func1<Student, String>() {
 
             @Override
-            public Observable<Lesson> call(Student student) {
-                return Observable.from(student.getLessonList());
+            public String call(Student student) {
+                return student.getName();
             }
-        }).subscribe(new Subscriber<Lesson>() {
+        }).subscribe(new Action1<String>() {
             @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(Lesson lesson) {
-                Log.i(Log.TAG,"flap "+lesson.getName());
+            public void call(String s) {
+                Log.i(Log.TAG,"MapOperation : "+s);
             }
         });
 

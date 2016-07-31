@@ -28,12 +28,12 @@ public class IntervalOperation implements IOperation {
         Observable.interval(2, TimeUnit.SECONDS).map(new Func1<Long, String>() {
             @Override
             public String call(Long aLong) {
-                return "2 seconds";
+                return String.valueOf(aLong).concat(" :seconds");
             }
         }).observeOn(Schedulers.io()).subscribe(new Action1<String>() {
             @Override
             public void call(String s) {
-                Log.i(Log.TAG,"s: ".concat(s));
+                Log.i(Log.TAG,s);
             }
         });
 

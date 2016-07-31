@@ -12,34 +12,34 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.forrest.testrxjava.R;
+import com.forrest.testrxjava.operation.BufferOperation;
 import com.forrest.testrxjava.operation.CreateOperation;
 import com.forrest.testrxjava.operation.DebounceOperation;
 import com.forrest.testrxjava.operation.DeferOperation;
+import com.forrest.testrxjava.operation.FlagMapOperation;
 import com.forrest.testrxjava.operation.FromOperation;
+import com.forrest.testrxjava.operation.GroupByOperation;
 import com.forrest.testrxjava.operation.IOperation;
 import com.forrest.testrxjava.operation.IntervalOperation;
 import com.forrest.testrxjava.operation.JustOperation;
 import com.forrest.testrxjava.operation.MapOperation;
+import com.forrest.testrxjava.operation.RangeOperation;
+import com.forrest.testrxjava.operation.RepeatOperation;
 import com.forrest.testrxjava.operation.RetryOperation;
 import com.forrest.testrxjava.operation.ScanOperation;
 import com.forrest.testrxjava.operation.SubscribeOperation;
-import com.forrest.testrxjava.util.Log;
 import com.forrest.testrxjava.view.DividerItemDecoration;
-import com.jakewharton.rxbinding.view.RxView;
-import com.jakewharton.rxbinding.widget.RxTextView;
-
-import java.util.concurrent.TimeUnit;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import rx.Observable;
-import rx.functions.Action1;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     @BindView(R.id.id_recyclerview) RecyclerView recyclerView;
 
-    private String[] operationArray={"create","just","from","map","Subscribe","scan","retry","Debounce","IntervalOperation","DeferOperation"};
+    private String[] operationArray={"create","just","from","map","Subscribe","scan","retry","Debounce",
+            "IntervalOperation","DeferOperation","RangeOperation","RepeatOperation",
+            "BufferOperation","flagmap","GroupByOperation"};
     private IOperation[] operations=new IOperation[operationArray.length];
 
     @Override
@@ -58,7 +58,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         operations[7]=new DebounceOperation();
         operations[8]=new IntervalOperation();
         operations[9]=new DeferOperation();
-
+        operations[10]=new RangeOperation();
+        operations[11]=new RepeatOperation();
+        operations[12]=new BufferOperation();
+        operations[13]=new FlagMapOperation();
+        operations[14]=new GroupByOperation();
 
     }
 

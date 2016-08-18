@@ -16,6 +16,7 @@ import com.forrest.testrxjava.operation.BufferOperation;
 import com.forrest.testrxjava.operation.CreateOperation;
 import com.forrest.testrxjava.operation.DebounceOperation;
 import com.forrest.testrxjava.operation.DeferOperation;
+import com.forrest.testrxjava.operation.DistinctOperation;
 import com.forrest.testrxjava.operation.FlagMapOperation;
 import com.forrest.testrxjava.operation.FromOperation;
 import com.forrest.testrxjava.operation.GroupByOperation;
@@ -29,6 +30,8 @@ import com.forrest.testrxjava.operation.RetryOperation;
 import com.forrest.testrxjava.operation.ScanOperation;
 import com.forrest.testrxjava.operation.SubscribeOperation;
 import com.forrest.testrxjava.operation.TakeOperation;
+import com.forrest.testrxjava.operation.WindowOperation;
+import com.forrest.testrxjava.operation.ZipOperation;
 import com.forrest.testrxjava.view.DividerItemDecoration;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private String[] operationArray={"create","just","from","map","Subscribe","scan","retry","Debounce",
             "IntervalOperation","DeferOperation","RangeOperation","RepeatOperation",
-            "BufferOperation","flagmap","GroupByOperation","TakeOperation"};
+            "BufferOperation","flagmap","GroupByOperation","TakeOperation","WindowOperation",
+            "DistinctOperation","ZipOperation"};
     private IOperation[] operations=new IOperation[operationArray.length];
 
     @Override
@@ -65,6 +69,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         operations[13]=new FlagMapOperation();
         operations[14]=new GroupByOperation();
         operations[15]=new TakeOperation();
+        operations[16]=new WindowOperation();
+        operations[17]=new DistinctOperation();
+        operations[18]=new ZipOperation();
 
 
     }

@@ -21,8 +21,7 @@ public class ScanOperation implements IOperation {
     public void exeCute() {
         Integer numbers[]={1,2,3,4,5,};
         Observable observable=Observable.from(numbers);
-        observable
-                .scan(new Func2<Integer,Integer,Integer>() {
+        observable.scan(new Func2<Integer,Integer,Integer>() {
                     @Override
                     public Integer call(Integer sum, Integer item) {
                         Log.i(Log.TAG," sum: "+sum+"  item: "+item);

@@ -28,6 +28,7 @@ import com.forrest.testrxjava.operation.RepeatOperation;
 import com.forrest.testrxjava.operation.RetryOperation;
 import com.forrest.testrxjava.operation.ScanOperation;
 import com.forrest.testrxjava.operation.SubscribeOperation;
+import com.forrest.testrxjava.operation.TakeOperation;
 import com.forrest.testrxjava.view.DividerItemDecoration;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private String[] operationArray={"create","just","from","map","Subscribe","scan","retry","Debounce",
             "IntervalOperation","DeferOperation","RangeOperation","RepeatOperation",
-            "BufferOperation","flagmap","GroupByOperation"};
+            "BufferOperation","flagmap","GroupByOperation","TakeOperation"};
     private IOperation[] operations=new IOperation[operationArray.length];
 
     @Override
@@ -63,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         operations[12]=new BufferOperation();
         operations[13]=new FlagMapOperation();
         operations[14]=new GroupByOperation();
+        operations[15]=new TakeOperation();
+
 
     }
 

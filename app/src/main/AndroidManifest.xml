@@ -20,11 +20,11 @@
             android:label="@string/title_activity_main2"
             android:launchMode="singleTask"
             android:taskAffinity="com.forrest.testrxjava"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.CActivity"
             android:label="@string/title_activity_c"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

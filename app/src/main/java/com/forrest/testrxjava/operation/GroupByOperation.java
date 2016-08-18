@@ -19,7 +19,7 @@ public class GroupByOperation implements IOperation {
 
     @Override
     public void exeCute() {
-        Observable.interval(1, TimeUnit.SECONDS).take(10).groupBy(new Func1<Long, Long>() {
+        Observable.interval(1, TimeUnit.SECONDS).take(6).groupBy(new Func1<Long, Long>() {
             @Override
             public Long call(Long value) {
                 //按照key为0,1,2分为3组

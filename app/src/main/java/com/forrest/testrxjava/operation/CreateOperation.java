@@ -29,47 +29,29 @@ public class CreateOperation implements IOperation {
 
     @Override
     public void exeCute() {
-        Observable.create(new Observable.OnSubscribe<Integer>(){
-
-            @Override
-            public void call(Subscriber<? super Integer> subscriber) {
-                for(int i=0;i<3;i++){
-                    try {
-                        subscriber.onNext(i);
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).map(new Func1<Integer, String>() {
-
-            @Override
-            public String call(Integer integer) {
-                textview.setText("function ".concat(String.valueOf(integer)));
-                return "function ".concat(String.valueOf(integer));
-            }
-        }).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<String>() {
-            @Override
-            public void call(String s) {
-                Log.i(Log.TAG,"hello ".concat(s));
-            }
-        });
-
-
 //        Observable.create(new Observable.OnSubscribe<Integer>(){
 //
 //            @Override
 //            public void call(Subscriber<? super Integer> subscriber) {
-//               for(int i=0;i<3;i++){
-//                   subscriber.onNext(i);
-//               }
-//                subscriber.onCompleted();
+//                for(int i=0;i<3;i++){
+//                    try {
+//                        subscriber.onNext(i);
+//                        Thread.sleep(2000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
 //            }
-//        }).subscribe(new Subscriber<Integer>() {
+//        }).map(new Func1<Integer, String>() {
+//
+//            @Override
+//            public String call(Integer integer) {
+//                textview.setText("function ".concat(String.valueOf(integer)));
+//                return "function ".concat(String.valueOf(integer));
+//            }
+//        }).subscribe(new Subscriber<String>() {
 //            @Override
 //            public void onCompleted() {
-//                Log.i(Log.TAG,"hello rxjava execute complete");
 //
 //            }
 //
@@ -79,10 +61,38 @@ public class CreateOperation implements IOperation {
 //            }
 //
 //            @Override
-//            public void onNext(Integer integer) {
-//                Log.i(Log.TAG,"hello rxjava "+integer);
-//
+//            public void onNext(String s) {
+//                Log.i(Log.TAG,"hello ".concat(s));
 //            }
 //        });
+
+
+        Observable.create(new Observable.OnSubscribe<Integer>(){
+
+            @Override
+            public void call(Subscriber<? super Integer> subscriber) {
+               for(int i=0;i<3;i++){
+                   subscriber.onNext(i);
+               }
+                subscriber.onCompleted();
+            }
+        }).subscribe(new Subscriber<Integer>() {
+            @Override
+            public void onCompleted() {
+                Log.i(Log.TAG,"hello rxjava execute complete");
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Integer integer) {
+                Log.i(Log.TAG,"hello rxjava "+integer);
+
+            }
+        });
     }
 }

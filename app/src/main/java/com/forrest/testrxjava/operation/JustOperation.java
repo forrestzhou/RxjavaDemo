@@ -31,5 +31,6 @@ public class JustOperation implements IOperation {
                 Log.i(Log.TAG,"just "+s);
             }
         });
+
     }
 }

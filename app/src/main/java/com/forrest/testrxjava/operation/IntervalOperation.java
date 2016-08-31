@@ -20,12 +20,13 @@ import rx.schedulers.Schedulers;
  * 周期发送事件
  * Created by forrest on 16/7/18.
  */
-public class IntervalOperation implements IOperation {
+public class IntervalOperation extends BaseOperation {
 
 
     @Override
     public void exeCute() {
-        Observable.interval(2, TimeUnit.SECONDS).map(new Func1<Long, String>() {
+        super.exeCute();
+        subscription=Observable.interval(2, TimeUnit.SECONDS).map(new Func1<Long, String>() {
             @Override
             public String call(Long aLong) {
                 return String.valueOf(aLong).concat(" :seconds");
@@ -36,6 +37,6 @@ public class IntervalOperation implements IOperation {
                 Log.i(Log.TAG,s);
             }
         });
-
+        SubscriptionManager.setSubscription(subscription);
     }
 }

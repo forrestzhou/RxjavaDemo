@@ -17,7 +17,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by forrest on 16/7/18.
  */
-public class CreateOperation implements IOperation {
+public class CreateOperation extends BaseOperation {
 
     private TextView textview;
 
@@ -29,51 +29,14 @@ public class CreateOperation implements IOperation {
 
     @Override
     public void exeCute() {
-//        Observable.create(new Observable.OnSubscribe<Integer>(){
-//
-//            @Override
-//            public void call(Subscriber<? super Integer> subscriber) {
-//                for(int i=0;i<3;i++){
-//                    try {
-//                        subscriber.onNext(i);
-//                        Thread.sleep(2000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }).map(new Func1<Integer, String>() {
-//
-//            @Override
-//            public String call(Integer integer) {
-//                textview.setText("function ".concat(String.valueOf(integer)));
-//                return "function ".concat(String.valueOf(integer));
-//            }
-//        }).subscribe(new Subscriber<String>() {
-//            @Override
-//            public void onCompleted() {
-//
-//            }
-//
-//            @Override
-//            public void onError(Throwable e) {
-//
-//            }
-//
-//            @Override
-//            public void onNext(String s) {
-//                Log.i(Log.TAG,"hello ".concat(s));
-//            }
-//        });
-
-
-        Observable.create(new Observable.OnSubscribe<Integer>(){
+        super.exeCute();
+        subscription=Observable.create(new Observable.OnSubscribe<Integer>(){
 
             @Override
             public void call(Subscriber<? super Integer> subscriber) {
-               for(int i=0;i<3;i++){
-                   subscriber.onNext(i);
-               }
+                for(int i=0;i<3;i++){
+                    subscriber.onNext(i);
+                }
                 subscriber.onCompleted();
             }
         }).subscribe(new Subscriber<Integer>() {
@@ -94,5 +57,8 @@ public class CreateOperation implements IOperation {
 
             }
         });
+        SubscriptionManager.setSubscription(subscription);
     }
+
+
 }

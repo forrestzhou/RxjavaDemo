@@ -23,27 +23,63 @@ public class MapOperation implements IOperation {
     @Override
     public void exeCute() {
 
-        List<Student> students=new ArrayList<>();
-        Student stuent=new Student();
-        stuent.setName("小一");
+//        List<Student> students=new ArrayList<>();
+//        Student stuent=new Student();
+//        stuent.setName("小一");
+//
+//        Student s1=new Student();
+//        s1.setName("小二");
+//
+//
+//        students.add(stuent);
+//        students.add(s1);
+//
+//        Observable.from(students).map(new Func1<Student, String>() {
+//
+//            @Override
+//            public String call(Student student) {
+//                return student.getName();
+//            }
+//        }).subscribe(new Action1<String>() {
+//            @Override
+//            public void call(String s) {
+//                Log.i(Log.TAG,"MapOperation : "+s);
+//            }
+//        });
 
-        Student s1=new Student();
-        s1.setName("小二");
-
-
-        students.add(stuent);
-        students.add(s1);
-
-        Observable.from(students).map(new Func1<Student, String>() {
+        Observable.create(new Observable.OnSubscribe<Integer>(){
 
             @Override
-            public String call(Student student) {
-                return student.getName();
+            public void call(Subscriber<? super Integer> subscriber) {
+                for(int i=0;i<3;i++){
+                    try {
+                        subscriber.onNext(i);
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-        }).subscribe(new Action1<String>() {
+        }).map(new Func1<Integer, String>() {
+
             @Override
-            public void call(String s) {
-                Log.i(Log.TAG,"MapOperation : "+s);
+            public String call(Integer integer) {
+                return "function ".concat(String.valueOf(integer));
+            }
+        }).subscribe(new Subscriber<String>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(String s) {
+                Log.i(Log.TAG,"hello ".concat(s));
             }
         });
 

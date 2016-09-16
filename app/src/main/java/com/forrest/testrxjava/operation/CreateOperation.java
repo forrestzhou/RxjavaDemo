@@ -39,7 +39,7 @@ public class CreateOperation extends BaseOperation {
                 }
                 subscriber.onCompleted();
             }
-        }).subscribe(new Subscriber<Integer>() {
+        }).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe(new Subscriber<Integer>() {
             @Override
             public void onCompleted() {
                 Log.i(Log.TAG,"hello rxjava execute complete");
@@ -58,6 +58,34 @@ public class CreateOperation extends BaseOperation {
             }
         });
         SubscriptionManager.setSubscription(subscription);
+
+        Observable.create(new Observable.OnSubscribe<Integer>(){
+
+            @Override
+            public void call(Subscriber<? super Integer> subscriber) {
+                for(int i=0;i<3;i++){
+                    subscriber.onNext(i);
+                }
+                subscriber.onCompleted();
+            }
+        }).subscribe(new Subscriber<Integer>() {
+            @Override
+            public void onCompleted() {
+                Log.i(Log.TAG,"hello rxjava execute complete");
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Integer integer) {
+                Log.i(Log.TAG,"hello rxjava "+integer);
+
+            }
+        });
     }
 
 

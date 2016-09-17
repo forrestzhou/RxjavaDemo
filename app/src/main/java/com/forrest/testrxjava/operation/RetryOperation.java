@@ -12,14 +12,14 @@ import rx.functions.Func2;
 /**
  * Created by forrest on 16/7/18.
  */
-public class RetryOperation implements IOperation {
+public class RetryOperation extends BaseOperation  {
 
     String flag;
 
     @Override
     public void exeCute() {
-
-        Observable.just(null).flatMap(new Func1<Object, Observable<String>>() {
+        super.exeCute();
+        subscription=Observable.just(null).flatMap(new Func1<Object, Observable<String>>() {
 
             @Override
             public Observable<String> call(Object o) {
@@ -54,7 +54,7 @@ public class RetryOperation implements IOperation {
                 Log.i(Log.TAG,s);
             }
         });
-
+        SubscriptionManager.setSubscription(subscription);
     }
 
     private  Observable<String> getStringText(){

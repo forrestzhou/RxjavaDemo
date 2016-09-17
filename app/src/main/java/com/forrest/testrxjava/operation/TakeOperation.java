@@ -21,17 +21,17 @@ import rx.schedulers.Schedulers;
  * 输出前6个数字
  * Created by forrest on 16/7/18.
  */
-public class TakeOperation implements IOperation {
-
-
+public class TakeOperation extends BaseOperation  {
 
     @Override
     public void exeCute() {
-        Observable.interval(1, TimeUnit.SECONDS).take(6).subscribe(new Action1<Long>() {
+        super.exeCute();
+        subscription=Observable.interval(1, TimeUnit.SECONDS).take(6).subscribe(new Action1<Long>() {
             @Override
             public void call(Long aLong) {
                 Log.i("TakeOperation",String.valueOf(aLong));
             }
         });
+        SubscriptionManager.setSubscription(subscription);
     }
 }

@@ -14,14 +14,15 @@ import rx.functions.Func2;
 /**
  * Created by forrest on 16/7/18.
  */
-public class ScanOperation implements IOperation {
+public class ScanOperation extends BaseOperation {
 
 
     @Override
     public void exeCute() {
+        super.exeCute();
         Integer numbers[]={1,2,3,4,5,};
         Observable observable=Observable.from(numbers);
-        observable.scan(new Func2<Integer,Integer,Integer>() {
+        subscription=observable.scan(new Func2<Integer,Integer,Integer>() {
                     @Override
                     public Integer call(Integer sum, Integer item) {
                         Log.i(Log.TAG," sum: "+sum+"  item: "+item);
@@ -52,5 +53,6 @@ public class ScanOperation implements IOperation {
                         Log.i(Log.TAG," result: "+(String)o);
                     }
                 });
+        SubscriptionManager.setSubscription(subscription);
     }
 }

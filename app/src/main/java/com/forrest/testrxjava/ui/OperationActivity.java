@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.forrest.testrxjava.R;
+import com.forrest.testrxjava.adapter.MainAdapter;
 import com.forrest.testrxjava.operation.BufferOperation;
 import com.forrest.testrxjava.operation.CreateOperation;
 import com.forrest.testrxjava.operation.DebounceOperation;
@@ -52,7 +53,7 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_operation);
         initView();
 
-        operations[0]=new CreateOperation(getWindow().getDecorView());
+        operations[0]=new CreateOperation();
         operations[1]=new JustOperation();
         operations[2]=new FromOperation();
         operations[3]=new MapOperation();
@@ -83,7 +84,7 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
         recyclerView.addItemDecoration(new DividerItemDecoration(
                 this, LinearLayoutManager.VERTICAL));
 
-        recyclerView.setAdapter(new OperationAdapter());
+        recyclerView.setAdapter(new MainAdapter(this,this,operationArray));
     }
 
 
@@ -95,48 +96,48 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-    private class OperationAdapter extends RecyclerView.Adapter<OperationAdapter.MyViewHolder>{
-
-        private LayoutInflater inflater;
-
-        public OperationAdapter(){
-            this.inflater=LayoutInflater. from(OperationActivity.this);
-        }
-
-        @Override
-        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = inflater.inflate(R.layout. item_main,parent, false);
-            MyViewHolder holder= new MyViewHolder(view,OperationActivity.this);
-            return holder;
-        }
-
-        @Override
-        public void onBindViewHolder(MyViewHolder holder, int position) {
-            holder.tv.setTag(position);
-            holder.tv.setText(operationArray[position]);
-        }
-
-        @Override
-        public int getItemCount() {
-            return operationArray.length;
-        }
-
-        class MyViewHolder extends RecyclerView.ViewHolder {
-
-            TextView tv;
-            public MyViewHolder(View view,View.OnClickListener onClickListener) {
-                super(view);
-                tv=(TextView) view.findViewById(R.id. tv_text);
-                tv.setOnClickListener(onClickListener);
-            }
-
-        }
-
-    }
+//    private class OperationAdapter extends RecyclerView.Adapter<OperationAdapter.MyViewHolder>{
+//
+//        private LayoutInflater inflater;
+//
+//        public OperationAdapter(){
+//            this.inflater=LayoutInflater. from(OperationActivity.this);
+//        }
+//
+//        @Override
+//        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//            View view = inflater.inflate(R.layout. item_main,parent, false);
+//            MyViewHolder holder= new MyViewHolder(view,OperationActivity.this);
+//            return holder;
+//        }
+//
+//        @Override
+//        public void onBindViewHolder(MyViewHolder holder, int position) {
+//            holder.tv.setTag(position);
+//            holder.tv.setText(operationArray[position]);
+//        }
+//
+//        @Override
+//        public int getItemCount() {
+//            return operationArray.length;
+//        }
+//
+//        class MyViewHolder extends RecyclerView.ViewHolder {
+//
+//            TextView tv;
+//            public MyViewHolder(View view,View.OnClickListener onClickListener) {
+//                super(view);
+//                tv=(TextView) view.findViewById(R.id. tv_text);
+//                tv.setOnClickListener(onClickListener);
+//            }
+//
+//        }
+//
+//    }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        System.exit(0);
+        finish();
     }
 }

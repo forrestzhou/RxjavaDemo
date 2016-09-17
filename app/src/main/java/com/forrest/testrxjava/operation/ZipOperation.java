@@ -18,14 +18,15 @@ import rx.functions.Func2;
 /**
  * Created by forrest on 16/7/18.
  */
-public class ZipOperation implements IOperation {
+public class ZipOperation extends BaseOperation {
 
 
     @Override
     public void exeCute() {
+        super.exeCute();
         Observable<Long> l=  Observable.interval(1, TimeUnit.SECONDS).take(5);
         Observable<Long> l1=  Observable.interval(1, TimeUnit.SECONDS).take(1);
-        Observable.zip(l, l1, new Func2<Long, Long, Integer>() {
+        subscription=Observable.zip(l, l1, new Func2<Long, Long, Integer>() {
 
             @Override
             public Integer call(Long aLong, Long aLong2) {
@@ -37,5 +38,7 @@ public class ZipOperation implements IOperation {
                 Log.i(Log.TAG,"number: "+integer);
             }
         });
+        SubscriptionManager.setSubscription(subscription);
+
     }
 }

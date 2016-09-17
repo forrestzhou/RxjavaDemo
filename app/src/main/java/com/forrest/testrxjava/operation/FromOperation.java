@@ -11,14 +11,14 @@ import rx.functions.Action1;
 /**
  * Created by forrest on 16/7/18.
  */
-public class FromOperation implements IOperation {
+public class FromOperation extends BaseOperation {
 
 
     @Override
     public void exeCute() {
+        super.exeCute();
         Integer[] item={1,2,3};
-
-        Observable.from(item).subscribe(new Action1<Integer>() {
+        subscription=Observable.from(item).subscribe(new Action1<Integer>() {
             @Override
             public void call(Integer integer) {
                 Log.i(Log.TAG, "form " + integer);
@@ -34,5 +34,6 @@ public class FromOperation implements IOperation {
                 Log.i(Log.TAG,"from complete");
             }
         });
+        SubscriptionManager.setSubscription(subscription);
     }
 }

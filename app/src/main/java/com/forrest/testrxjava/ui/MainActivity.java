@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @BindView(R.id.id_recyclerview) RecyclerView recyclerView;
 
-    private String[] operationArray={"创建操作符"};
+    private String[] operationArray={"操作符"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(final View v) {
         if(v.getTag() instanceof Integer){
-            int index=(int) v.getTag();
+            Intent intent = null;
+            switch ((int) v.getTag()){
+                case 0:
+                  intent =new Intent(this,OperationActivity.class);
+                    break;
+
+            }
+            startActivity(intent);
+
         }
     }
 

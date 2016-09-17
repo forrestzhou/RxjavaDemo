@@ -10,19 +10,21 @@ import rx.functions.Action1;
  * 被订阅的时候才会调用
  * Created by forrest on 16/7/29.
  */
-public class DeferOperation implements IOperation {
+public class DeferOperation extends BaseOperation {
     private String TAG=DeferOperation.class.getSimpleName();
 
     @Override
     public void exeCute() {
+        super.exeCute();
         SomeType instance = new SomeType();
         Observable<String> value = instance.valueObservable();
         instance.setValue("Some Value");
-        value.subscribe(new Action1<String>() {
+        subscription=value.subscribe(new Action1<String>() {
             @Override
             public void call(String s) {
                 Log.i(TAG,": "+s);
             }
         });
+        SubscriptionManager.setSubscription(subscription);
     }
 }

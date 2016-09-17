@@ -20,13 +20,14 @@ import rx.subjects.PublishSubject;
 /**
  * Created by forrest on 16/7/18.
  */
-public class DebounceOperation implements IOperation {
+public class DebounceOperation extends BaseOperation {
 
     private Random random=new Random();
 
     @Override
     public void exeCute() {
-        Observable.create(new Observable.OnSubscribe<Integer>() {
+        super.exeCute();
+        subscription=Observable.create(new Observable.OnSubscribe<Integer>() {
             @Override
             public void call(Subscriber<? super Integer> subscriber) {
                 try {
@@ -44,6 +45,7 @@ public class DebounceOperation implements IOperation {
                 Log.i(Log.TAG,String.valueOf(integer));
             }
         });
+        SubscriptionManager.setSubscription(subscription);
     }
 
 

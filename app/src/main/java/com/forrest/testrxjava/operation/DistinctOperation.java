@@ -15,13 +15,14 @@ import rx.schedulers.Schedulers;
  * 抑制（过滤掉）重复的数据项
  * Created by forrest on 16/7/18.
  */
-public class DistinctOperation implements IOperation {
+public class DistinctOperation extends BaseOperation {
 
     private Random random=new Random();
 
     @Override
     public void exeCute() {
-        Observable.create(new Observable.OnSubscribe<Integer>() {
+        super.exeCute();
+        subscription=Observable.create(new Observable.OnSubscribe<Integer>() {
             @Override
             public void call(Subscriber<? super Integer> subscriber) {
                 for(int i=0;i<20;i++){
@@ -34,6 +35,7 @@ public class DistinctOperation implements IOperation {
                 Log.i(Log.TAG,String.valueOf(integer));
             }
         });
+        SubscriptionManager.setSubscription(subscription);
     }
 
 

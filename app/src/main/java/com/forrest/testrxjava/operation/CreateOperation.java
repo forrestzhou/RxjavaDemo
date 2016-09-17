@@ -19,13 +19,8 @@ import rx.schedulers.Schedulers;
  */
 public class CreateOperation extends BaseOperation {
 
-    private TextView textview;
 
-    private String[] text={"1","2","3"};
 
-    public CreateOperation(View view){
-        textview= (TextView) view.findViewById(R.id.tv_text);
-    }
 
     @Override
     public void exeCute() {
@@ -59,33 +54,33 @@ public class CreateOperation extends BaseOperation {
         });
         SubscriptionManager.setSubscription(subscription);
 
-        Observable.create(new Observable.OnSubscribe<Integer>(){
-
-            @Override
-            public void call(Subscriber<? super Integer> subscriber) {
-                for(int i=0;i<3;i++){
-                    subscriber.onNext(i);
-                }
-                subscriber.onCompleted();
-            }
-        }).subscribe(new Subscriber<Integer>() {
-            @Override
-            public void onCompleted() {
-                Log.i(Log.TAG,"hello rxjava execute complete");
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(Integer integer) {
-                Log.i(Log.TAG,"hello rxjava "+integer);
-
-            }
-        });
+//        Observable.create(new Observable.OnSubscribe<Integer>(){
+//
+//            @Override
+//            public void call(Subscriber<? super Integer> subscriber) {
+//                for(int i=0;i<3;i++){
+//                    subscriber.onNext(i);
+//                }
+//                subscriber.onCompleted();
+//            }
+//        }).subscribe(new Subscriber<Integer>() {
+//            @Override
+//            public void onCompleted() {
+//                Log.i(Log.TAG,"hello rxjava execute complete");
+//
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//
+//            }
+//
+//            @Override
+//            public void onNext(Integer integer) {
+//                Log.i(Log.TAG,"hello rxjava "+integer);
+//
+//            }
+//        });
     }
 
 

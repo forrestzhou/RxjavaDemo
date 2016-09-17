@@ -15,15 +15,11 @@ import rx.functions.Func1;
 /**
  * Created by forrest on 16/7/18.
  */
-public class FlagMapOperation implements IOperation {
-
-
-
-
+public class FlagMapOperation extends BaseOperation {
 
     @Override
     public void exeCute() {
-
+        super.exeCute();
         List<Student> students=new ArrayList<>();
         Student stuent=new Student();
         Lesson l1=new Lesson();
@@ -43,7 +39,7 @@ public class FlagMapOperation implements IOperation {
         students.add(stuent);
         students.add(s1);
 
-        Observable.from(students).flatMap(new Func1<Student, Observable<Lesson>>() {
+        subscription=Observable.from(students).flatMap(new Func1<Student, Observable<Lesson>>() {
 
             @Override
             public Observable<Lesson> call(Student student) {
@@ -65,6 +61,6 @@ public class FlagMapOperation implements IOperation {
                 Log.i(Log.TAG,"flap "+lesson.getName());
             }
         });
-
+        SubscriptionManager.setSubscription(subscription);
     }
 }

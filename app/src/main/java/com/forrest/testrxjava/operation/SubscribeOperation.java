@@ -18,7 +18,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by forrest on 16/7/21.
  */
-public class SubscribeOperation implements IOperation {
+public class SubscribeOperation extends BaseOperation {
 
     private TextView textview;
 
@@ -32,12 +32,11 @@ public class SubscribeOperation implements IOperation {
 
     @Override
     public void exeCute() {
-
-        Observable.from(text).subscribeOn(Schedulers.io()).doOnSubscribe(new Action0() {
+        super.exeCute();
+        subscription=Observable.from(text).subscribeOn(Schedulers.io()).doOnSubscribe(new Action0() {
             @Override
             public void call() {
                 textview.setText("开始玩啦...");
-                Log.i(Log.TAG,"s "+"开始玩啦...");
             }
         }).subscribeOn(AndroidSchedulers.mainThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<String>() {
             @Override
@@ -46,7 +45,7 @@ public class SubscribeOperation implements IOperation {
                 Log.i(Log.TAG,s);
             }
         });
-
+        SubscriptionManager.setSubscription(subscription);
 //        Observable.from(text).map(new Func1<String, String>() {
 //            @Override
 //            public String call(String s) {

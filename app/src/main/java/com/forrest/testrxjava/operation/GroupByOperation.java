@@ -14,12 +14,13 @@ import rx.schedulers.Schedulers;
 /**
  * Created by forrest on 16/7/18.
  */
-public class GroupByOperation implements IOperation {
+public class GroupByOperation extends BaseOperation {
 
 
     @Override
     public void exeCute() {
-        Observable.interval(1, TimeUnit.SECONDS).take(6).groupBy(new Func1<Long, Long>() {
+        super.exeCute();
+        subscription=Observable.interval(1, TimeUnit.SECONDS).take(6).groupBy(new Func1<Long, Long>() {
             @Override
             public Long call(Long value) {
                 //按照key为0,1,2分为3组
@@ -36,6 +37,6 @@ public class GroupByOperation implements IOperation {
                 });
             }
         });
-
+        SubscriptionManager.setSubscription(subscription);
     }
 }

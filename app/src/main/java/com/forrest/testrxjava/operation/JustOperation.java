@@ -9,12 +9,13 @@ import rx.Subscriber;
 /**
  * Created by forrest on 16/7/18.
  */
-public class JustOperation implements IOperation {
+public class JustOperation extends BaseOperation {
 
 
     @Override
     public void exeCute() {
-        Observable.just("one","two","three").subscribe(new Subscriber<String>() {
+        super.exeCute();
+        subscription=Observable.just("one","two","three").subscribe(new Subscriber<String>() {
             @Override
             public void onCompleted() {
                 Log.i(Log.TAG,"just complete..");
@@ -31,6 +32,6 @@ public class JustOperation implements IOperation {
                 Log.i(Log.TAG,"just "+s);
             }
         });
-
+        SubscriptionManager.setSubscription(subscription);
     }
 }

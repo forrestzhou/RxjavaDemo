@@ -13,11 +13,12 @@ import rx.schedulers.Schedulers;
 /**
  * Created by forrest on 16/7/18.
  */
-public class TimerOperation implements IOperation {
+public class TimerOperation extends BaseOperation {
 
 
     @Override
     public void exeCute() {
+        super.exeCute();
         Observable.timer(2, TimeUnit.SECONDS).map(new Func1<Long, String>() {
             @Override
             public String call(Long aLong) {
@@ -29,6 +30,6 @@ public class TimerOperation implements IOperation {
                 Log.i(Log.TAG,"s: ".concat(s));
             }
         });
-
+        SubscriptionManager.setSubscription(subscription);
     }
 }

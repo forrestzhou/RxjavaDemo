@@ -16,15 +16,15 @@ import rx.schedulers.Schedulers;
 /**Buffer
  * Created by forrest on 16/7/18.
  */
-public class BufferOperation implements IOperation {
+public class BufferOperation extends BaseOperation {
 
     private String[] names={"小-","小二","小三","小四","小五"};
 
 
     @Override
     public void exeCute() {
-
-        Observable.create(new Observable.OnSubscribe<String>() {
+        super.exeCute();
+        subscription=Observable.create(new Observable.OnSubscribe<String>() {
 
             @Override
             public void call(Subscriber<? super String> subscriber) {
@@ -52,5 +52,6 @@ public class BufferOperation implements IOperation {
                 }
             }
         });
+        SubscriptionManager.setSubscription(subscription);
     }
 }

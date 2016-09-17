@@ -22,8 +22,7 @@
             android:taskAffinity="com.forrest.testrxjava"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.CActivity"
-            android:label="@string/title_activity_c"
+            android:name=".ui.OperationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

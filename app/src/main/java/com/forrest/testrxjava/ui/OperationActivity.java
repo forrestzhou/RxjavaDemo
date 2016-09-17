@@ -52,7 +52,10 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_operation);
         initView();
+        initOperation();
+    }
 
+    private void initOperation(){
         operations[0]=new CreateOperation();
         operations[1]=new JustOperation();
         operations[2]=new FromOperation();
@@ -72,8 +75,6 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
         operations[16]=new WindowOperation();
         operations[17]=new DistinctOperation();
         operations[18]=new ZipOperation();
-
-
     }
 
     private void initView(){
@@ -95,45 +96,6 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
           operations[(int) v.getTag()].exeCute();
         }
     }
-
-//    private class OperationAdapter extends RecyclerView.Adapter<OperationAdapter.MyViewHolder>{
-//
-//        private LayoutInflater inflater;
-//
-//        public OperationAdapter(){
-//            this.inflater=LayoutInflater. from(OperationActivity.this);
-//        }
-//
-//        @Override
-//        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//            View view = inflater.inflate(R.layout. item_main,parent, false);
-//            MyViewHolder holder= new MyViewHolder(view,OperationActivity.this);
-//            return holder;
-//        }
-//
-//        @Override
-//        public void onBindViewHolder(MyViewHolder holder, int position) {
-//            holder.tv.setTag(position);
-//            holder.tv.setText(operationArray[position]);
-//        }
-//
-//        @Override
-//        public int getItemCount() {
-//            return operationArray.length;
-//        }
-//
-//        class MyViewHolder extends RecyclerView.ViewHolder {
-//
-//            TextView tv;
-//            public MyViewHolder(View view,View.OnClickListener onClickListener) {
-//                super(view);
-//                tv=(TextView) view.findViewById(R.id. tv_text);
-//                tv.setOnClickListener(onClickListener);
-//            }
-//
-//        }
-//
-//    }
 
     @Override
     public void onBackPressed() {

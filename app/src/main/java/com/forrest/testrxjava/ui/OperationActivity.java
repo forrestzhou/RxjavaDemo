@@ -28,6 +28,7 @@ import com.forrest.testrxjava.operation.RepeatOperation;
 import com.forrest.testrxjava.operation.RetryOperation;
 import com.forrest.testrxjava.operation.ScanOperation;
 import com.forrest.testrxjava.operation.SubscribeOperation;
+import com.forrest.testrxjava.operation.SubscriptionManager;
 import com.forrest.testrxjava.operation.TakeOperation;
 import com.forrest.testrxjava.operation.WindowOperation;
 import com.forrest.testrxjava.operation.ZipOperation;
@@ -88,12 +89,16 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
         recyclerView.setAdapter(new MainAdapter(this,this,operationArray));
     }
 
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SubscriptionManager.unSubscription();
+    }
 
     @Override
     public void onClick(final View v) {
         if(v.getTag() instanceof Integer){
-          operations[(int) v.getTag()].exeCute();
+            operations[(int) v.getTag()].exeCute();
         }
     }
 

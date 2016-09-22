@@ -1,17 +1,12 @@
 package com.forrest.testrxjava.operation;
 
 
-import android.view.View;
-import android.widget.TextView;
 
-import com.forrest.testrxjava.R;
-import com.forrest.testrxjava.util.Log;
+
+import com.orhanobut.logger.Logger;
 
 import rx.Observable;
 import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -37,7 +32,7 @@ public class CreateOperation extends BaseOperation {
         }).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe(new Subscriber<Integer>() {
             @Override
             public void onCompleted() {
-                Log.i(Log.TAG,"hello rxjava execute complete");
+                Logger.i("hello rxjava execute complete");
 
             }
 
@@ -48,7 +43,7 @@ public class CreateOperation extends BaseOperation {
 
             @Override
             public void onNext(Integer integer) {
-                Log.i(Log.TAG,"hello rxjava "+integer);
+                Logger.i("hello rxjava "+integer);
 
             }
         });

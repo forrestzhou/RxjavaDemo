@@ -1,17 +1,11 @@
 package com.forrest.testrxjava.operation;
 
 
-import android.view.View;
-import android.widget.TextView;
-
-import com.forrest.testrxjava.R;
-import com.forrest.testrxjava.util.Log;
+import com.orhanobut.logger.Logger;
 
 import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
@@ -34,7 +28,7 @@ public class IntervalOperation extends BaseOperation {
         }).observeOn(Schedulers.io()).subscribe(new Action1<String>() {
             @Override
             public void call(String s) {
-                Log.i(Log.TAG,s);
+                Logger.i(s);
             }
         });
         SubscriptionManager.setSubscription(subscription);

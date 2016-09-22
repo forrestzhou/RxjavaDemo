@@ -1,7 +1,8 @@
 package com.forrest.testrxjava.operation;
 
 
-import com.forrest.testrxjava.util.Log;
+
+import com.orhanobut.logger.Logger;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -18,7 +19,7 @@ public class JustOperation extends BaseOperation {
         subscription=Observable.just("one","two","three").subscribe(new Subscriber<String>() {
             @Override
             public void onCompleted() {
-                Log.i(Log.TAG,"just complete..");
+                Logger.i("just complete..");
 
             }
 
@@ -29,7 +30,7 @@ public class JustOperation extends BaseOperation {
 
             @Override
             public void onNext(String s) {
-                Log.i(Log.TAG,"just "+s);
+                Logger.i("just "+s);
             }
         });
         SubscriptionManager.setSubscription(subscription);

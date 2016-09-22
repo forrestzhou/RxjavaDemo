@@ -1,11 +1,9 @@
 package com.forrest.testrxjava.operation;
 
 
-import com.forrest.testrxjava.util.Log;
+import com.orhanobut.logger.Logger;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
-
 import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Action1;
@@ -32,7 +30,7 @@ public class DistinctOperation extends BaseOperation {
         }).distinct().observeOn(Schedulers.io()).subscribe(new Action1<Integer>() {
             @Override
             public void call(Integer integer) {
-                Log.i(Log.TAG,String.valueOf(integer));
+                Logger.i(String.valueOf(integer));
             }
         });
         SubscriptionManager.setSubscription(subscription);

@@ -1,8 +1,8 @@
 package com.forrest.testrxjava.operation;
 
 
-import com.forrest.testrxjava.R;
-import com.forrest.testrxjava.util.Log;
+
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 import java.util.Random;
@@ -46,9 +46,9 @@ public class BufferOperation extends BaseOperation {
         }).subscribeOn(Schedulers.io()).buffer(2,TimeUnit.SECONDS).subscribe(new Action1<List<String>>() {
             @Override
             public void call(List<String> strings) {
-                Log.i("BufferOperation","开始两秒点一次名字...");
+                Logger.i("BufferOperation","开始两秒点一次名字...");
                 for (String name:strings) {
-                    Log.i("BufferOperation","name: "+name);
+                    Logger.i("BufferOperation","name: "+name);
                 }
             }
         });

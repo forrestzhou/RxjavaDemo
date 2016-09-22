@@ -1,9 +1,8 @@
 package com.forrest.testrxjava.operation;
 
 
-import android.nfc.Tag;
 
-import com.forrest.testrxjava.util.Log;
+import com.orhanobut.logger.Logger;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -25,7 +24,7 @@ public class ScanOperation extends BaseOperation {
         subscription=observable.scan(new Func2<Integer,Integer,Integer>() {
                     @Override
                     public Integer call(Integer sum, Integer item) {
-                        Log.i(Log.TAG," sum: "+sum+"  item: "+item);
+                        Logger.i(" sum: "+sum+"  item: "+item);
 
                         return sum+item;
                     }
@@ -33,7 +32,7 @@ public class ScanOperation extends BaseOperation {
                 .map(new Func1<Integer,String>() {
                     @Override
                     public String call(Integer number) {
-                        Log.i(Log.TAG," number: "+number);
+                        Logger.i(" number: "+number);
                         return String.valueOf(number);
                     }
                 })
@@ -50,7 +49,7 @@ public class ScanOperation extends BaseOperation {
 
                     @Override
                     public void onNext(Object o) {
-                        Log.i(Log.TAG," result: "+(String)o);
+                        Logger.i(" result: "+(String)o);
                     }
                 });
         SubscriptionManager.setSubscription(subscription);

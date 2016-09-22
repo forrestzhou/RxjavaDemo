@@ -1,10 +1,9 @@
 package com.forrest.testrxjava.operation;
 
 
-import com.forrest.testrxjava.util.Log;
+import com.orhanobut.logger.Logger;
 
 import rx.Observable;
-import rx.Subscriber;
 import rx.functions.Action0;
 import rx.functions.Action1;
 
@@ -21,17 +20,17 @@ public class FromOperation extends BaseOperation {
         subscription=Observable.from(item).subscribe(new Action1<Integer>() {
             @Override
             public void call(Integer integer) {
-                Log.i(Log.TAG, "form " + integer);
+                Logger.i( "form " + integer);
             }
         }, new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-                Log.e(Log.TAG, "error: "+throwable.getMessage());
+                Logger.e( "error: "+throwable.getMessage());
             }
         }, new Action0() {
             @Override
             public void call() {
-                Log.i(Log.TAG,"from complete");
+                Logger.i("from complete");
             }
         });
         SubscriptionManager.setSubscription(subscription);

@@ -3,7 +3,7 @@ package com.forrest.testrxjava.operation;
 
 import com.forrest.testrxjava.model.Lesson;
 import com.forrest.testrxjava.model.Student;
-import com.forrest.testrxjava.util.Log;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ public class MapOperation extends BaseOperation {
         }).subscribe(new Action1<String>() {
             @Override
             public void call(String s) {
-                Log.i(Log.TAG,"MapOperation : "+s);
+                Logger.i("MapOperation : "+s);
             }
         });
         SubscriptionManager.setSubscription(subscription);

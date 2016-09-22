@@ -1,7 +1,8 @@
 package com.forrest.testrxjava.operation;
 
 
-import com.forrest.testrxjava.util.Log;
+
+import com.orhanobut.logger.Logger;
 
 import java.util.concurrent.TimeUnit;
 
@@ -27,7 +28,7 @@ public class TimerOperation extends BaseOperation {
         }).observeOn(Schedulers.io()).subscribe(new Action1<String>() {
             @Override
             public void call(String s) {
-                Log.i(Log.TAG,"s: ".concat(s));
+                Logger.i("s: ".concat(s));
             }
         });
         SubscriptionManager.setSubscription(subscription);

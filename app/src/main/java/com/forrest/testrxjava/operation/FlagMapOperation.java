@@ -3,7 +3,7 @@ package com.forrest.testrxjava.operation;
 
 import com.forrest.testrxjava.model.Lesson;
 import com.forrest.testrxjava.model.Student;
-import com.forrest.testrxjava.util.Log;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +58,7 @@ public class FlagMapOperation extends BaseOperation {
 
             @Override
             public void onNext(Lesson lesson) {
-                Log.i(Log.TAG,"flap "+lesson.getName());
+                Logger.i("flap "+lesson.getName());
             }
         });
         SubscriptionManager.setSubscription(subscription);

@@ -1,13 +1,12 @@
 package com.forrest.testrxjava.operation;
 
 
-import com.forrest.testrxjava.util.Log;
+
+import com.orhanobut.logger.Logger;
 
 import rx.Observable;
-import rx.Subscriber;
 import rx.functions.Action1;
 import rx.functions.Func1;
-import rx.functions.Func2;
 
 /**
  * Created by forrest on 16/7/18.
@@ -24,9 +23,9 @@ public class RetryOperation extends BaseOperation  {
             @Override
             public Observable<String> call(Object o) {
                 if(flag==null){
-                    Log.i(Log.TAG,"null..");
+                    Logger.i("null..");
                 }else {
-                    Log.i(Log.TAG,"success..");
+                    Logger.i("success..");
                 }
                 return flag==null? Observable.<String>error(new NullPointerException("flag is null")) : getStringTextSuccess() ;
             }
@@ -51,7 +50,7 @@ public class RetryOperation extends BaseOperation  {
         }).subscribe(new Action1<String>() {
             @Override
             public void call(String s) {
-                Log.i(Log.TAG,s);
+                Logger.i(s);
             }
         });
         SubscriptionManager.setSubscription(subscription);

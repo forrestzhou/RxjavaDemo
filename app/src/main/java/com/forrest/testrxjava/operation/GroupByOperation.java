@@ -1,7 +1,7 @@
 package com.forrest.testrxjava.operation;
 
 
-import com.forrest.testrxjava.util.Log;
+import com.orhanobut.logger.Logger;
 
 import java.util.concurrent.TimeUnit;
 
@@ -9,7 +9,6 @@ import rx.Observable;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.observables.GroupedObservable;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by forrest on 16/7/18.
@@ -32,7 +31,7 @@ public class GroupByOperation extends BaseOperation {
                 result.subscribe(new Action1<Long>() {
                     @Override
                     public void call(Long value) {
-                        Log.i("GroupByOperation","key:" + result.getKey() +", value:" + value);
+                        Logger.i("GroupByOperation","key:" + result.getKey() +", value:" + value);
                     }
                 });
             }

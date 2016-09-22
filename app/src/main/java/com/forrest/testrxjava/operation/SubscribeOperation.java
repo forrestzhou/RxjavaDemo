@@ -5,7 +5,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.forrest.testrxjava.R;
-import com.forrest.testrxjava.util.Log;
+import com.orhanobut.logger.Logger;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -42,7 +42,7 @@ public class SubscribeOperation extends BaseOperation {
             @Override
             public void call(String s) {
                 textview.setText(s);
-                Log.i(Log.TAG,s);
+                Logger.i(s);
             }
         });
         SubscriptionManager.setSubscription(subscription);

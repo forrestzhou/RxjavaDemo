@@ -1,7 +1,8 @@
 package com.forrest.testrxjava.operation;
 
 
-import com.forrest.testrxjava.util.Log;
+
+import com.orhanobut.logger.Logger;
 
 import rx.Observable;
 import rx.functions.Action1;
@@ -19,7 +20,7 @@ public class RepeatOperation extends BaseOperation {
         subscription=Observable.just("110").repeat(2).subscribe(new Action1<String>() {
             @Override
             public void call(String s) {
-                Log.i("RepeatOperation"," :"+s);
+                Logger.i("RepeatOperation"," :"+s);
             }
         });
         SubscriptionManager.setSubscription(subscription);

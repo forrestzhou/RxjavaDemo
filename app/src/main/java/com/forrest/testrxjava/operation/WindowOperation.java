@@ -1,15 +1,10 @@
 package com.forrest.testrxjava.operation;
 
 
-import com.forrest.testrxjava.util.Log;
-
+import com.orhanobut.logger.Logger;
 import java.util.concurrent.TimeUnit;
-
 import rx.Observable;
-import rx.Subscriber;
 import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.functions.Func2;
 
 /**
  * 但不是发射来自原始Observable的数据包，它发射的是Observables
@@ -26,11 +21,11 @@ public class WindowOperation extends BaseOperation {
             @Override
             public void call(Observable<Long> longObservable) {
 
-                Log.i(Log.TAG,"start...");
+                Logger.i("start...");
                 longObservable.subscribe(new Action1<Long>() {
                     @Override
                     public void call(Long aLong) {
-                        Log.i(Log.TAG,"currentNumber: "+aLong);
+                        Logger.i("currentNumber: "+aLong);
                     }
                 });
             }

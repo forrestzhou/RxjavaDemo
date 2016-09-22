@@ -1,7 +1,7 @@
 package com.forrest.testrxjava.operation;
 
 import com.forrest.testrxjava.model.SomeType;
-import com.forrest.testrxjava.util.Log;
+import com.orhanobut.logger.Logger;
 
 import rx.Observable;
 import rx.functions.Action1;
@@ -22,7 +22,7 @@ public class DeferOperation extends BaseOperation {
         subscription=value.subscribe(new Action1<String>() {
             @Override
             public void call(String s) {
-                Log.i(TAG,": "+s);
+                Logger.i(TAG,": "+s);
             }
         });
         SubscriptionManager.setSubscription(subscription);

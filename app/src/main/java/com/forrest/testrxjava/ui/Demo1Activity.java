@@ -20,7 +20,7 @@ import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
-public class Domo1Activity extends BaseRxjavaActivity {
+public class Demo1Activity extends BaseRxjavaActivity {
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
 

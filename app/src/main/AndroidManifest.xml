@@ -24,7 +24,8 @@
         <activity
             android:name=".ui.OperationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.Domo1Activity"></activity>
+        <activity android:name=".ui.Demo1Activity" />
+        <activity android:name=".ui.Demo2Activity"></activity>
     </application>
 
 </manifest>

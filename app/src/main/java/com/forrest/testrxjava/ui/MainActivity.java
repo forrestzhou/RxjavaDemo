@@ -38,11 +38,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends BaseRxjavaActivity implements View.OnClickListener{
 
     @BindView(R.id.id_recyclerview) RecyclerView recyclerView;
 
-    private String[] operationArray={"操作符"};
+    private String[] operationArray={"操作符","子线程耗时,主线程更新ui"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initView(){
-        ButterKnife.bind(this);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -68,6 +67,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             switch ((int) v.getTag()){
                 case 0:
                   intent =new Intent(this,OperationActivity.class);
+                    break;
+                case 1:
+                    intent =new Intent(this,Domo1Activity.class);
                     break;
 
             }

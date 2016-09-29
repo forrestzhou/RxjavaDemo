@@ -7,6 +7,7 @@ import com.orhanobut.logger.Logger;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -29,21 +30,9 @@ public class CreateOperation extends BaseOperation {
                 }
                 subscriber.onCompleted();
             }
-        }).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe(new Subscriber<Integer>() {
+        }).subscribe(new Action1<Integer>() {
             @Override
-            public void onCompleted() {
-                Logger.i("hello rxjava execute complete");
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(Integer integer) {
-                Logger.i("hello rxjava "+integer);
+            public void call(Integer integer) {
 
             }
         });

@@ -121,11 +121,11 @@ public class Demo2Activity extends BaseRxjavaActivity {
     }
 
     private void updateData(List<String> stringList){
+        searchDatas.clear();
         if(stringList!=null){
-            searchDatas.clear();
             searchDatas.addAll(stringList);
-            myAdapter.notifyDataSetChanged();
         }
+        myAdapter.notifyDataSetChanged();
     }
 
     private class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{

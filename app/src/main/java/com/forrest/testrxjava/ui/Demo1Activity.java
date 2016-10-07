@@ -40,7 +40,7 @@ public class Demo1Activity extends BaseRxjavaActivity {
             public void call(Subscriber<? super String> subscriber) {
                 Logger.i("执行耗时操作....");
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(3000);
                     subscriber.onNext("耗时操作完成...");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -63,7 +63,7 @@ public class Demo1Activity extends BaseRxjavaActivity {
             public void call(Subscriber<? super String> subscriber) {
                 Logger.i("doInBackground()....");
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(3000);
                     subscriber.onNext("耗时操作完成...");
                 } catch (InterruptedException e) {
                     e.printStackTrace();

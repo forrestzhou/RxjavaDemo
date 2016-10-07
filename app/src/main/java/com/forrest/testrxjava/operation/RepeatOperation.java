@@ -20,7 +20,7 @@ public class RepeatOperation extends BaseOperation {
         subscription=Observable.just("110").repeat(2).subscribe(new Action1<String>() {
             @Override
             public void call(String s) {
-                Logger.i("RepeatOperation"," :"+s);
+                Logger.i(s);
             }
         });
         SubscriptionManager.setSubscription(subscription);

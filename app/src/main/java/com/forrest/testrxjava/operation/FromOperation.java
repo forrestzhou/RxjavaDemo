@@ -16,7 +16,7 @@ public class FromOperation extends BaseOperation {
     @Override
     public void exeCute() {
         super.exeCute();
-        Integer[] item={1,2,3};
+        Integer[] item={1,2};
         subscription=Observable.from(item).subscribe(new Action1<Integer>() {
             @Override
             public void call(Integer integer) {

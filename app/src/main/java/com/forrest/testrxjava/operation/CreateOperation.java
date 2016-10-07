@@ -33,7 +33,7 @@ public class CreateOperation extends BaseOperation {
         }).subscribe(new Action1<Integer>() {
             @Override
             public void call(Integer integer) {
-
+                Logger.i(String.valueOf(integer));
             }
         });
         SubscriptionManager.setSubscription(subscription);

@@ -30,6 +30,7 @@ import com.forrest.testrxjava.operation.ScanOperation;
 import com.forrest.testrxjava.operation.SubscribeOperation;
 import com.forrest.testrxjava.operation.SubscriptionManager;
 import com.forrest.testrxjava.operation.TakeOperation;
+import com.forrest.testrxjava.operation.TimerOperation;
 import com.forrest.testrxjava.operation.WindowOperation;
 import com.forrest.testrxjava.operation.ZipOperation;
 import com.forrest.testrxjava.view.DividerItemDecoration;
@@ -45,7 +46,7 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
     private String[] operationArray={"create","just","from","map","Subscribe","scan","retry","Debounce",
             "IntervalOperation","DeferOperation","RangeOperation","RepeatOperation",
             "BufferOperation","flagmap","GroupByOperation","TakeOperation","WindowOperation",
-            "DistinctOperation","ZipOperation"};
+            "DistinctOperation","ZipOperation","TimerOperation"};
     private IOperation[] operations=new IOperation[operationArray.length];
 
     @Override
@@ -76,6 +77,8 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
         operations[16]=new WindowOperation();
         operations[17]=new DistinctOperation();
         operations[18]=new ZipOperation();
+        operations[19]=new TimerOperation();
+
     }
 
     private void initView(){

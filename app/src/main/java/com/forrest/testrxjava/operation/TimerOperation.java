@@ -20,15 +20,10 @@ public class TimerOperation extends BaseOperation {
     @Override
     public void exeCute() {
         super.exeCute();
-        Observable.timer(2, TimeUnit.SECONDS).map(new Func1<Long, String>() {
+        subscription=Observable.timer(2, TimeUnit.SECONDS).subscribe(new Action1<Long>() {
             @Override
-            public String call(Long aLong) {
-                return "2 seconds";
-            }
-        }).observeOn(Schedulers.io()).subscribe(new Action1<String>() {
-            @Override
-            public void call(String s) {
-                Logger.i("s: ".concat(s));
+            public void call(Long aLong) {
+                Logger.i(String.valueOf(aLong));
             }
         });
         SubscriptionManager.setSubscription(subscription);

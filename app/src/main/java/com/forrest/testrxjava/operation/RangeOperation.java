@@ -19,10 +19,10 @@ public class RangeOperation extends BaseOperation {
     @Override
     public void exeCute() {
         super.exeCute();
-        subscription=Observable.range(0,5).subscribe(new Action1<Integer>() {
+        subscription=Observable.range(1,2).subscribe(new Action1<Integer>() {
             @Override
             public void call(Integer integer) {
-                Logger.i("RangeOperation",String.valueOf(integer));
+                Logger.i(String.valueOf(integer));
             }
         });
         SubscriptionManager.setSubscription(subscription);

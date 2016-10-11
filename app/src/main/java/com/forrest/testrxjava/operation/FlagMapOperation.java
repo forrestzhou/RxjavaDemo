@@ -61,6 +61,31 @@ public class FlagMapOperation extends BaseOperation {
                 Logger.i("flap "+lesson.getName());
             }
         });
+
+        subscription=Observable.from(students).concatMap(new Func1<Student, Observable<Lesson>>() {
+
+            @Override
+            public Observable<Lesson> call(Student student) {
+                return Observable.from(student.getLessonList());
+            }
+        }).subscribe(new Subscriber<Lesson>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Lesson lesson) {
+                Logger.i("flap "+lesson.getName());
+            }
+        });
+
+
         SubscriptionManager.setSubscription(subscription);
     }
 }

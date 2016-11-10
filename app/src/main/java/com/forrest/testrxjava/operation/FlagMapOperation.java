@@ -10,6 +10,7 @@ import java.util.List;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.functions.Action1;
 import rx.functions.Func1;
 
 /**
@@ -30,60 +31,35 @@ public class FlagMapOperation extends BaseOperation {
         lessions.add(l1);
         lessions.add(l2);
         stuent.setLessonList(lessions);
-
-        Student s1=new Student();
-        List<Lesson> lession1=new ArrayList<>();
-        lession1.add(l1);
-        s1.setLessonList(lession1);
-
         students.add(stuent);
-        students.add(s1);
-
         subscription=Observable.from(students).flatMap(new Func1<Student, Observable<Lesson>>() {
 
             @Override
             public Observable<Lesson> call(Student student) {
                 return Observable.from(student.getLessonList());
             }
-        }).subscribe(new Subscriber<Lesson>() {
+        }).subscribe(new Action1<Lesson>() {
             @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(Lesson lesson) {
-                Logger.i("flap "+lesson.getName());
+            public void call(Lesson lesson) {
+                Logger.i("flatMap :"+lesson.getName());
             }
         });
 
-        subscription=Observable.from(students).concatMap(new Func1<Student, Observable<Lesson>>() {
-
-            @Override
-            public Observable<Lesson> call(Student student) {
-                return Observable.from(student.getLessonList());
-            }
-        }).subscribe(new Subscriber<Lesson>() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(Lesson lesson) {
-                Logger.i("flap "+lesson.getName());
-            }
-        });
+//        subscription=Observable.from(students).concatMap(new Func1<Student, Observable<Lesson>>() {
+//
+//            @Override
+//            public Observable<Lesson> call(Student student) {
+//                Lesson lesson=new Lesson();
+//                lesson.setName("dddddd");
+//                return Observable.just(lesson);
+//            }
+//        }).subscribe(new Action1<Lesson>() {
+//            @Override
+//            public void call(Lesson lesson) {
+//                Logger.i("concatMap :"+lesson.getName());
+//
+//            }
+//        });
 
 
         SubscriptionManager.setSubscription(subscription);

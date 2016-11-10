@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
+import rx.Scheduler;
 import rx.Subscriber;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by forrest on 16/7/18.
@@ -30,7 +32,7 @@ public class MapOperation extends BaseOperation {
         s1.setName("小二");
         students.add(stuent);
         students.add(s1);
-        subscription=Observable.from(students).map(new Func1<Student, String>() {
+        subscription=Observable.from(students).observeOn(Schedulers.io()).map(new Func1<Student, String>() {
 
             @Override
             public String call(Student student) {

@@ -27,7 +27,6 @@ public class BufferOperation extends BaseOperation {
 
             @Override
             public void call(Subscriber<? super String> subscriber) {
-
                     final String[] names = {"小-", "小二", "小三", "小四", "小五"};
                     Random random = new Random();
                     if(subscriber.isUnsubscribed()){
@@ -42,8 +41,6 @@ public class BufferOperation extends BaseOperation {
                         e.printStackTrace();
                     }
                     } while (true);
-
-
             }
         }).subscribeOn(Schedulers.io()).buffer(2,TimeUnit.SECONDS).subscribe(new Action1<List<String>>() {
             @Override

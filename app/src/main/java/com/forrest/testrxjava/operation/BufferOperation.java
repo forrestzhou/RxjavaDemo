@@ -27,22 +27,22 @@ public class BufferOperation extends BaseOperation {
 
             @Override
             public void call(Subscriber<? super String> subscriber) {
-                try {
-                    final String[] names={"小-","小二","小三","小四","小五"};
-                    Random random=new Random();
-                    do{
-                        String name=names[random.nextInt(names.length)];
+
+                    final String[] names = {"小-", "小二", "小三", "小四", "小五"};
+                    Random random = new Random();
+                    if(subscriber.isUnsubscribed()){
+                        return;
+                    }
+                    do {
+                        String name = names[random.nextInt(names.length)];
                         subscriber.onNext(name);
-                        try {
-                            Thread.sleep(1000);
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
-                    }while (true);
-                }catch (Exception e){
-                    e.printStackTrace();
-                    subscriber.onError(e);
-                }
+                    try {
+                        Thread.sleep(1000);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    } while (true);
+
 
             }
         }).subscribeOn(Schedulers.io()).buffer(2,TimeUnit.SECONDS).subscribe(new Action1<List<String>>() {

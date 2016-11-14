@@ -24,32 +24,14 @@ public class ScanOperation extends BaseOperation {
         subscription=observable.scan(new Func2<Integer,Integer,Integer>() {
                     @Override
                     public Integer call(Integer sum, Integer item) {
-                        Logger.i(" sum: "+sum+"  item: "+item);
-
+                        System.out.println(" sum: "+sum+"  item: "+item);
                         return sum+item;
                     }
                 })
-                .map(new Func1<Integer,String>() {
+                .subscribe(new Action1() {
                     @Override
-                    public String call(Integer number) {
-                        Logger.i(" number: "+number);
-                        return String.valueOf(number);
-                    }
-                })
-                .subscribe(new Subscriber() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(Object o) {
-                        Logger.i(" result: "+(String)o);
+                    public void call(Object o) {
+                        System.out.println(" result: "+o);
                     }
                 });
         SubscriptionManager.setSubscription(subscription);

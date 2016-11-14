@@ -18,7 +18,6 @@ import rx.schedulers.Schedulers;
  */
 public class BufferOperation extends BaseOperation {
 
-    private String[] names={"小-","小二","小三","小四","小五"};
 
 
     @Override
@@ -29,16 +28,19 @@ public class BufferOperation extends BaseOperation {
             @Override
             public void call(Subscriber<? super String> subscriber) {
                 try {
-                    if(subscriber!=null&&subscriber.isUnsubscribed()){
-                        return;
-                    }
+                    final String[] names={"小-","小二","小三","小四","小五"};
                     Random random=new Random();
                     do{
                         String name=names[random.nextInt(names.length)];
                         subscriber.onNext(name);
-                        Thread.sleep(1000);
+                        try {
+                            Thread.sleep(1000);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                     }while (true);
                 }catch (Exception e){
+                    e.printStackTrace();
                     subscriber.onError(e);
                 }
 
@@ -46,9 +48,9 @@ public class BufferOperation extends BaseOperation {
         }).subscribeOn(Schedulers.io()).buffer(2,TimeUnit.SECONDS).subscribe(new Action1<List<String>>() {
             @Override
             public void call(List<String> strings) {
-                Logger.i("BufferOperation","开始两秒点一次名字...");
+                System.out.println("开始两秒点一次名字...");
                 for (String name:strings) {
-                    Logger.i("BufferOperation","name: "+name);
+                    System.out.println("name: "+name);
                 }
             }
         });

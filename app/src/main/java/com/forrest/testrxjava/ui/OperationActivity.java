@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.forrest.testrxjava.R;
 import com.forrest.testrxjava.adapter.MainAdapter;
 import com.forrest.testrxjava.operation.BufferOperation;
+import com.forrest.testrxjava.operation.CastOperation;
 import com.forrest.testrxjava.operation.CreateOperation;
 import com.forrest.testrxjava.operation.DebounceOperation;
 import com.forrest.testrxjava.operation.DeferOperation;
@@ -46,7 +47,7 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
     private String[] operationArray={"create","just","from","map","Subscribe","scan","retry","Debounce",
             "IntervalOperation","DeferOperation","RangeOperation","RepeatOperation",
             "BufferOperation","flagmap","GroupByOperation","TakeOperation","WindowOperation",
-            "DistinctOperation","ZipOperation","TimerOperation"};
+            "DistinctOperation","ZipOperation","TimerOperation","CastOperation"};
     private IOperation[] operations=new IOperation[operationArray.length];
 
     @Override
@@ -78,6 +79,8 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
         operations[17]=new DistinctOperation();
         operations[18]=new ZipOperation();
         operations[19]=new TimerOperation();
+        operations[20]=new CastOperation();
+
 
     }
 

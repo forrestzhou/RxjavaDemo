@@ -17,6 +17,7 @@ import com.forrest.testrxjava.operation.CreateOperation;
 import com.forrest.testrxjava.operation.DebounceOperation;
 import com.forrest.testrxjava.operation.DeferOperation;
 import com.forrest.testrxjava.operation.DistinctOperation;
+import com.forrest.testrxjava.operation.FilterOperation;
 import com.forrest.testrxjava.operation.FlagMapOperation;
 import com.forrest.testrxjava.operation.FromOperation;
 import com.forrest.testrxjava.operation.GroupByOperation;
@@ -27,7 +28,9 @@ import com.forrest.testrxjava.operation.MapOperation;
 import com.forrest.testrxjava.operation.RangeOperation;
 import com.forrest.testrxjava.operation.RepeatOperation;
 import com.forrest.testrxjava.operation.RetryOperation;
+import com.forrest.testrxjava.operation.SampleOperation;
 import com.forrest.testrxjava.operation.ScanOperation;
+import com.forrest.testrxjava.operation.SkipOperation;
 import com.forrest.testrxjava.operation.SubscribeOperation;
 import com.forrest.testrxjava.operation.SubscriptionManager;
 import com.forrest.testrxjava.operation.TakeOperation;
@@ -47,7 +50,7 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
     private String[] operationArray={"create","just","from","map","Subscribe","scan","retry","Debounce",
             "IntervalOperation","DeferOperation","RangeOperation","RepeatOperation",
             "BufferOperation","flagmap","GroupByOperation","TakeOperation","WindowOperation",
-            "DistinctOperation","ZipOperation","TimerOperation","CastOperation"};
+            "DistinctOperation","ZipOperation","TimerOperation","CastOperation","FilterOperation","SampleOperation","SkipOperation"};
     private IOperation[] operations=new IOperation[operationArray.length];
 
     @Override
@@ -80,6 +83,9 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
         operations[18]=new ZipOperation();
         operations[19]=new TimerOperation();
         operations[20]=new CastOperation();
+        operations[21]=new FilterOperation();
+        operations[22]=new SampleOperation();
+        operations[23]=new SkipOperation();
 
 
     }

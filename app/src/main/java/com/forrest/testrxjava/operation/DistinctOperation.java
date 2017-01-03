@@ -23,8 +23,8 @@ public class DistinctOperation extends BaseOperation {
         subscription=Observable.create(new Observable.OnSubscribe<Integer>() {
             @Override
             public void call(Subscriber<? super Integer> subscriber) {
-                for(int i=0;i<20;i++){
-                    subscriber.onNext(random.nextInt(5));
+                for(int i=0;i<10;i++){
+                    subscriber.onNext(random.nextInt(3));
                 }
             }
         }).distinct().observeOn(Schedulers.io()).subscribe(new Action1<Integer>() {

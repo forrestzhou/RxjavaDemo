@@ -13,6 +13,7 @@ import com.forrest.testrxjava.R;
 import com.forrest.testrxjava.adapter.MainAdapter;
 import com.forrest.testrxjava.operation.BufferOperation;
 import com.forrest.testrxjava.operation.CastOperation;
+import com.forrest.testrxjava.operation.CombineLatestOperation;
 import com.forrest.testrxjava.operation.CreateOperation;
 import com.forrest.testrxjava.operation.DebounceOperation;
 import com.forrest.testrxjava.operation.DeferOperation;
@@ -23,14 +24,17 @@ import com.forrest.testrxjava.operation.FromOperation;
 import com.forrest.testrxjava.operation.GroupByOperation;
 import com.forrest.testrxjava.operation.IOperation;
 import com.forrest.testrxjava.operation.IntervalOperation;
+import com.forrest.testrxjava.operation.JoinOperation;
 import com.forrest.testrxjava.operation.JustOperation;
 import com.forrest.testrxjava.operation.MapOperation;
+import com.forrest.testrxjava.operation.MergeOperation;
 import com.forrest.testrxjava.operation.RangeOperation;
 import com.forrest.testrxjava.operation.RepeatOperation;
 import com.forrest.testrxjava.operation.RetryOperation;
 import com.forrest.testrxjava.operation.SampleOperation;
 import com.forrest.testrxjava.operation.ScanOperation;
 import com.forrest.testrxjava.operation.SkipOperation;
+import com.forrest.testrxjava.operation.StartWithOperation;
 import com.forrest.testrxjava.operation.SubscribeOperation;
 import com.forrest.testrxjava.operation.SubscriptionManager;
 import com.forrest.testrxjava.operation.TakeOperation;
@@ -50,7 +54,8 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
     private String[] operationArray={"create","just","from","map","Subscribe","scan","retry","Debounce",
             "IntervalOperation","DeferOperation","RangeOperation","RepeatOperation",
             "BufferOperation","flagmap","GroupByOperation","TakeOperation","WindowOperation",
-            "DistinctOperation","ZipOperation","TimerOperation","CastOperation","FilterOperation","SampleOperation","SkipOperation"};
+            "DistinctOperation","ZipOperation","TimerOperation","CastOperation","FilterOperation","SampleOperation","SkipOperation"
+            ,"StartWithOperation","CombineLatestOperation","JoinOperation","MergeOperation"};
     private IOperation[] operations=new IOperation[operationArray.length];
 
     @Override
@@ -86,6 +91,10 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
         operations[21]=new FilterOperation();
         operations[22]=new SampleOperation();
         operations[23]=new SkipOperation();
+        operations[24]=new StartWithOperation();
+        operations[25]=new CombineLatestOperation();
+        operations[26]=new JoinOperation();
+        operations[27]=new MergeOperation();
 
 
     }

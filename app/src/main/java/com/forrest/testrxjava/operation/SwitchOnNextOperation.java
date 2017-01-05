@@ -28,11 +28,11 @@ public class SwitchOnNextOperation extends BaseOperation {
                     public Long call(Long aLong) {
                         return aLong * 10;
                     }
-                }).take(5);
+                }).take(3);
             }
         }).take(2);
 
-        Observable.switchOnNext(observable).subscribe(new Action1<Long>() {
+        subscription=Observable.switchOnNext(observable).subscribe(new Action1<Long>() {
             @Override
             public void call(Long aLong) {
                 System.out.println("Next:" + aLong);

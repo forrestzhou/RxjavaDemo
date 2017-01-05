@@ -37,6 +37,7 @@ import com.forrest.testrxjava.operation.SkipOperation;
 import com.forrest.testrxjava.operation.StartWithOperation;
 import com.forrest.testrxjava.operation.SubscribeOperation;
 import com.forrest.testrxjava.operation.SubscriptionManager;
+import com.forrest.testrxjava.operation.SwitchOnNextOperation;
 import com.forrest.testrxjava.operation.TakeOperation;
 import com.forrest.testrxjava.operation.TimerOperation;
 import com.forrest.testrxjava.operation.WindowOperation;
@@ -55,7 +56,7 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
             "IntervalOperation","DeferOperation","RangeOperation","RepeatOperation",
             "BufferOperation","flagmap","GroupByOperation","TakeOperation","WindowOperation",
             "DistinctOperation","ZipOperation","TimerOperation","CastOperation","FilterOperation","SampleOperation","SkipOperation"
-            ,"StartWithOperation","CombineLatestOperation","JoinOperation","MergeOperation"};
+            ,"StartWithOperation","CombineLatestOperation","JoinOperation","MergeOperation","SwitchOnNextOperation"};
     private IOperation[] operations=new IOperation[operationArray.length];
 
     @Override
@@ -95,6 +96,7 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
         operations[25]=new CombineLatestOperation();
         operations[26]=new JoinOperation();
         operations[27]=new MergeOperation();
+        operations[28]=new SwitchOnNextOperation();
 
 
     }

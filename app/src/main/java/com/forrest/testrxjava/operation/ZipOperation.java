@@ -17,18 +17,20 @@ public class ZipOperation extends BaseOperation {
     @Override
     public void exeCute() {
         super.exeCute();
-        Observable<Long> l=  Observable.interval(1, TimeUnit.SECONDS).take(5);
-        Observable<Long> l1=  Observable.interval(1, TimeUnit.SECONDS).take(1);
-        subscription=Observable.zip(l, l1, new Func2<Long, Long, Integer>() {
+        Observable<Long> observable1=  Observable.interval(1, TimeUnit.SECONDS).take(3);
+        Observable<Long> observable2=  Observable.interval(1, TimeUnit.SECONDS).take(4);
+        subscription=Observable.zip(observable1, observable2, new Func2<Long, Long, Integer>() {
 
             @Override
             public Integer call(Long aLong, Long aLong2) {
+                System.out.println("aLong:" + aLong+"   aLong2：  "+aLong2);
+
                 return (int) (aLong+aLong);
             }
         }).subscribe(new Action1<Integer>() {
             @Override
             public void call(Integer integer) {
-                Logger.i("number: "+integer);
+                System.out.println("result:" + integer);
             }
         });
         SubscriptionManager.setSubscription(subscription);
